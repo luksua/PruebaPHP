@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2025 at 12:55 AM
+-- Generation Time: Jul 02, 2025 at 08:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -38,7 +38,9 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` (`id`, `nombre`) VALUES
 (1, 'Infantil'),
-(2, 'Deportivos');
+(2, 'Deportivos'),
+(6, 'Dama'),
+(7, 'Caballero');
 
 -- --------------------------------------------------------
 
@@ -52,7 +54,7 @@ CREATE TABLE `pedidos` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `estado` enum('activo','inactivo','','') NOT NULL
+  `estado` enum('Pendiente','Entregado','Cancelado','Enviado') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -60,7 +62,10 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id`, `id_usuario`, `id_producto`, `cantidad`, `fecha`, `estado`) VALUES
-(1, 1, 3, 4, '2025-06-27', 'activo');
+(1, 1, 3, 4, '2025-06-27', 'Pendiente'),
+(2, 2, 3, 4, '2025-06-30', 'Entregado'),
+(3, 2, 13, 4, '2025-06-30', 'Entregado'),
+(4, 2, 12, 2, '2025-06-30', 'Cancelado');
 
 -- --------------------------------------------------------
 
@@ -83,9 +88,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `talla`, `descripcion`, `precio`, `imagen`, `id_categoria`) VALUES
-(1, 'Nike', 33, 'Nike teni', '200000', 'nike.png', 2),
-(3, 'Adidas', 36, 'Adidas teni', '500000', 'adidas.jpg', 1),
-(9, 'Nike niño', 29, 'Nike teni', '300000', 'nike.png', 1);
+(1, 'Nike niño', 29, 'Nike teni', '300000', 'adidas.jpg', 2),
+(3, 'Nike niña', 29, 'Nike teni', '300000', 'adidas.jpg', 2),
+(9, 'Nike niño', 29, 'Nike teni', '300000', 'adidas.jpg', 2),
+(12, 'Adidas x', 36, 'Adidas teni', '2000', 'nike.png', 2),
+(13, 'Deportivos x', 22, 'Adidas teni', '400000', 'adidas.jpg', 1),
+(14, 'Chanclas', 37, 'Verdes', '600000', 'nike.png', 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +114,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contraseña`, `rol`) VALUES
-(1, 'luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin');
+(1, 'Luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin'),
+(2, 'Pepito', 'pepito@gmail.com', '$2y$10$uAWTgjrE9gWS1yTRJdTATOH/1iAQlBg9y.6KsIdg79v6fV6Lb.9kK', 'cliente'),
+(5, 'Pepita', 'pepita@gmail.com', '$2y$10$v/UQLifaN5TUvAS3TNe.hOztI3XbmGCG9nIpg.gP4x.6/geJVXEUq', 'cliente');
 
 --
 -- Indexes for dumped tables
@@ -147,25 +157,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

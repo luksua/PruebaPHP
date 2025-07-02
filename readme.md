@@ -52,3 +52,36 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
     - Manejo de eventos en el proyecto
 - README.md
     - Documentación del proyecto
+
+## Tareas realizadas del reto avanzado
+
+- [ ] Adaptar la base de datos -> **Angel**
+- [ ] Cambios en las vistas: Catalogo -> 
+- [ ] Cambios en las vistas: Panel Administrador -> 
+
+### Opcional
+- [ ] Carrito de compras mixto -> 
+- [ ] Estadísticas de productos más vendidos por tipo -> 
+- [ ] Filtro avanzado por tipo, marca o características -> 
+- [ ] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> 
+
+### Autenticación completa y segura
+- [ x ] Implementar login y registro para clientes -> **Luna**
+- [ x ] Guardar contraseñas con hash (`password_hash` / `password_verify`) -> **Luna**
+- [ ] Controlar acceso mediante sesiones para la zona admin ->
+
+### Paginación y búsqueda
+- [ ] Mostrar productos en el catálogo en páginas de 6, 9 o 12 productos ->
+- [ ] Añadir buscador por nombre o filtro por categoría ->
+
+### Carrito de compras (simulado)
+- [ ] Permitir que el cliente agregue varios productos antes de confirmar el pedido ->
+- [ ] Guardar el carrito en la sesión y luego crear el pedido al confirmar ->
+
+### Estado del pedido
+- [ x ] Permitir que el administrador cambie el estado de un pedido (Pendiente, Enviado, Entregado, Cancelado) -> **Luna**
+- [ ] Mostrar al cliente el estado actual de sus pedidos ->
+
+### Dashboard con gráficas
+- [ ] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar ->
+- [ ] Ejemplo: número de pedidos por mes, productos más vendidos, etc ->
