@@ -9,7 +9,7 @@ class Conexion
     private $conn;
     public function abrir()
     {
-        $this->mySQLI = new mysqli("localhost", "root", "", "tienda_tenis");
+        $this->mySQLI = new mysqli("localhost", "root", "", "tienda_electronicos");
     }
     public function cerrar()
     {
