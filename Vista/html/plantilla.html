@@ -1,0 +1,133 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Tenis</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Tienda de Tenis</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#admin">Zona Admin</a>
+    </nav>
+  </header>
+
+  <section id="catalogo">
+    <h2>Catálogo de Productos</h2>
+    <div class="productos">
+      <!-- Aquí se llenan los productos dinámicamente -->
+      <div class="producto">
+        <img src="img/ejemplo.jpg" alt="Tenis Ejemplo">
+        <h3>Tenis Modelo X</h3>
+        <p>Categoría: Deportivos</p>
+        <p>Talla: 42</p>
+        <p>$180.000</p>
+        <button>Solicitar Compra</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="admin">
+    <h2>Zona Administrador</h2>
+    <p><strong>Iniciar sesión:</strong></p>
+    <form action="" method="post">
+      <input type="email" placeholder="Correo">
+      <input type="password" placeholder="Contraseña">
+      <button type="submit">Ingresar</button>
+    </form>
+  </section>
+
+  <section id="panel-admin">
+    <h2>Panel de Administración</h2>
+
+    <div class="admin-section">
+      <h3>Productos</h3>
+      <form class="form-admin">
+        <input type="text" placeholder="Nombre del producto">
+        <input type="number" placeholder="Precio">
+        <input type="text" placeholder="Talla">
+        <select>
+          <option value="">Seleccionar categoría</option>
+        </select>
+        <input type="file">
+        <button type="submit">Guardar Producto</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Talla</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Tenis Modelo X</td>
+            <td>Deportivos</td>
+            <td>$180.000</td>
+            <td>42</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="admin-section">
+      <h3>Categorías</h3>
+      <form class="form-admin">
+        <input type="text" placeholder="Nombre de la categoría">
+        <button type="submit">Guardar Categoría</button>
+      </form>
+      <ul>
+        <li>Deportivos <button>Eliminar</button></li>
+        <li>Casuales <button>Eliminar</button></li>
+      </ul>
+    </div>
+
+    <div class="admin-section">
+      <h3>Pedidos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Pedido</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>101</td>
+            <td>Juan Pérez</td>
+            <td>Tenis Modelo X</td>
+            <td>2</td>
+            <td>2025-06-27</td>
+            <td>Pendiente</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Tienda de Tenis. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>
