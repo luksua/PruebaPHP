@@ -40,6 +40,7 @@ if ($filas > 0) { ?>
                     <td>
                         <button onclick="completarPedido(<?php echo $fila['id_pedido'] ?>)">Completar pedido</button>
                         <button onclick="cancelarPedido(<?php echo $fila['id_pedido'] ?>)">Cancelar pedido</button>
+                        <button onclick="estadoEnviado(<?php echo $fila['id_pedido'] ?>)">Marcar como enviado</button>
                     </td>
                 </tr>
             </tbody>

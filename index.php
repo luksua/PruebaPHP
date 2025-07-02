@@ -52,7 +52,9 @@ if (isset($_GET["accion"])) {
         $controladorPedidos->completarPedido($_GET["id"]);
     } elseif ($_GET["accion"] == "cancelarPedido"){
         $controladorPedidos->cancelarPedido($_GET["id"]);
-    
+    } elseif ($_GET["accion"] == "estadoEnviado"){
+        $controladorPedidos->estadoEnviado($_GET["id"]);
+        
     // CRUD PRODUCTO
     } elseif ($_GET["accion"] == "agregarProducto") {
         $ruta_indexphp = "uploads";

@@ -56,8 +56,8 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 ## Tareas realizadas del reto avanzado
 
 - [ ] Adaptar la base de datos -> **Angel**
-- [ ] Cambios en las vistas: Catalogo -> 
-- [ ] Cambios en las vistas: Panel Administrador -> 
+- [ ] Cambios en las vistas: Catalogo -> **Luna**
+- [ ] Cambios en las vistas: Panel Administrador -> **Brian**
 
 ### Opcional
 - [ ] Carrito de compras mixto -> 

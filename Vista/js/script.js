@@ -99,3 +99,10 @@ function cancelarPedido(id) {
         window.location.href = "index.php?accion=cancelarPedido&id=" + id;
     }
 }
+
+function estadoEnviado(id) {
+    var id = id;
+    if (confirm("Está seguro de cambiar el estado del pedido a ENVIADO?")) {
+        window.location.href = "index.php?accion=estadoEnviado&id=" + id;
+    }
+}

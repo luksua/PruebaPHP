@@ -27,4 +27,17 @@ class ControladorPedidos{
                 </script>";
         }
     }
+        public function estadoEnviado($id){
+        $gestorPedidos = new GestorPedidos();
+        $filas = $gestorPedidos->estadoEnviado($id);
+        if ($filas > 0) {
+            echo "<script>alert('Pedido cambiado a Enviado');
+                window.location='index.php?accion=adminPedidos'
+                </script>";
+        } else {
+            echo "<script>alert('Algo salió mal. Intente nuevamente');
+                window.location='index.php?accion=adminPedidos'
+                </script>";
+        }
+    }
 }

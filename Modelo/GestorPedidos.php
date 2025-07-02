@@ -19,4 +19,13 @@ class GestorPedidos{
         $conexion->cerrar();
         return $filas;
     }
+    public function estadoEnviado($id){
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $sql = "UPDATE pedidos SET estado = 'Enviado' WHERE id = $id";
+        $conexion->consultar($sql);
+        $filas = $conexion->getFilas();
+        $conexion->cerrar();
+        return $filas;
+    }
 }
