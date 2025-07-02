@@ -66,8 +66,8 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 - [ ] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> 
 
 ### Autenticación completa y segura
-- [ x ] Implementar login y registro para clientes -> **Luna**
-- [ x ] Guardar contraseñas con hash (`password_hash` / `password_verify`) -> **Luna**
+- [x] Implementar login y registro para clientes -> **Luna**
+- [x] Guardar contraseñas con hash (`password_hash` / `password_verify`) -> **Luna**
 - [ ] Controlar acceso mediante sesiones para la zona admin ->
 
 ### Paginación y búsqueda
@@ -79,7 +79,7 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 - [ ] Guardar el carrito en la sesión y luego crear el pedido al confirmar ->
 
 ### Estado del pedido
-- [ x ] Permitir que el administrador cambie el estado de un pedido (Pendiente, Enviado, Entregado, Cancelado) -> **Luna**
+- [x] Permitir que el administrador cambie el estado de un pedido (Pendiente, Enviado, Entregado, Cancelado) -> **Luna**
 - [ ] Mostrar al cliente el estado actual de sus pedidos ->
 
 ### Dashboard con gráficas
