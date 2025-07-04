@@ -31,6 +31,10 @@ class Conexion
     }
     public function getError()
     {
-        return $this->conn->error;
+        if ($this->mySQLI) {
+            return $this->mySQLI->error;
+        } else {
+            return "No hay conexión a la base de datos.";
+        }
     }
 }

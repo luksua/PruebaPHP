@@ -6,7 +6,8 @@
         if ($_SESSION["rol"] == "cliente") { ?>
             <a href="index.php?accion=catalogo">Inicio</a>
             <a href="index.php?accion=catalogo">Catálogo</a>
-            <a href="index.php?accion=panelCliente">Carrito</a>
+            <a href="index.php?accion=loadCarrito">Carrito</a>
+            <a href="index.php?accion=panelCliente">Mis Pedidos</a>
             <a href="index.php?accion=logout">Cerrar Sesión</a>
             <?php
         } else { ?>

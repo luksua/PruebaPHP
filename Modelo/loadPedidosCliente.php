@@ -24,6 +24,7 @@ if ($filas > 0) { ?>
     <table>
         <thead>
             <tr>
+                <th>#</th>
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Especificaciones</th>
@@ -31,24 +32,28 @@ if ($filas > 0) { ?>
                 <th>Categoria</th>
                 <th>Cantidad</th>
                 <th>Precio</th>
+                <th>Estado</th>
             </tr>
         </thead>
+        <tbody>
         <?php
+        $i = 1;
         while ($fila = $result->fetch_assoc()) { ?>
-            <tbody>
-                <tr>
-                    <td><?php echo $fila["marca"] ?></td>
-                    <td><?php echo $fila["modelos"] ?></td>
-                    <td><?php echo $fila["tipo"] ?></td>
-                    <td><?php echo $fila["nombre_categoria"] ?></td>
-                    <td><?php echo $fila["cantidad"] ?></td>
-                    <td><?php echo $fila["precio"] ?></td>
-                </tr>
-            </tbody>
-            <?php
-        } ?>
+            <tr>
+                <td><?php echo $i++; ?></td>
+                <td><?php echo htmlspecialchars($fila["marca"]); ?></td>
+                <td><?php echo htmlspecialchars($fila["modelos"]); ?></td>
+                <td><?php echo htmlspecialchars($fila["especificaciones"]); ?></td>
+                <td><?php echo htmlspecialchars($fila["tipo"]); ?></td>
+                <td><?php echo htmlspecialchars($fila["nombre_categoria"]); ?></td>
+                <td><?php echo $fila["cantidad"]; ?></td>
+                <td><?php echo '$' . number_format($fila["precio"], 2); ?></td>
+                <td><?php echo htmlspecialchars($fila["estado"]); ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
     </table>
-    <?php
+<?php
 } else { 
-    echo "Usted no tiene pedidos. Solicitelos y apareceran aquí";
-}?>
+    echo "Usted no tiene pedidos. Solicítelos y aparecerán aquí.";
+}

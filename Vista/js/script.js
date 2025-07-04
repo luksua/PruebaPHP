@@ -6,6 +6,7 @@ $(document).ready(function () {
     loadCatalogo(0);
     loadMenu();
     loadPedidosCliente();
+    loadCarrito();
 })
 
 function loadCategorias() {
@@ -35,6 +36,12 @@ function loadPedidos() {
 function loadPedidosCliente() {
     $.post("Modelo/loadPedidosCliente.php", {}, function (respuesta) {
         $("#pedidosCliente").html(respuesta);
+    })
+}
+
+function loadCarrito() {
+    $.post("Modelo/loadCarrito.php", {}, function (respuesta) {
+        $("#carrito").html(respuesta);
     })
 }
 
@@ -81,6 +88,10 @@ function mostrarProductos(id) {
     // window.location.href = "index.php?accion=mostrarProductos&id=" + id;
 }
 
+function confirmarPedido() {
+    window.location.href = "index.php?accion=confirmarPedido";
+}
+
 function solicitar(id) {
     var id = id;
     window.location.href = "index.php?accion=solicitarCompra&id=" + id;
@@ -99,3 +110,17 @@ function cancelarPedido(id) {
         window.location.href = "index.php?accion=cancelarPedido&id=" + id;
     }
 }
+
+// CARRUSEL
+$(document).on('click', '.carrusel-flecha', function() {
+    var $carrusel = $(this).closest('.carrusel');
+    var imagenes = JSON.parse($carrusel.attr('data-imagenes'));
+    var $img = $carrusel.find('.carrusel-img');
+    var actual = imagenes.indexOf($img.attr('src'));
+    if ($(this).hasClass('izq')) {
+        actual = (actual - 1 + imagenes.length) % imagenes.length;
+    } else {
+        actual = (actual + 1) % imagenes.length;
+    }
+    $img.attr('src', imagenes[actual]);
+});

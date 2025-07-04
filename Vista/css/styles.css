@@ -128,3 +128,26 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
+
+/* CARRUSEL */
+.carrusel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.carrusel-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.carrusel-flecha {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #000000;
+    padding: 0 10px;
+}
