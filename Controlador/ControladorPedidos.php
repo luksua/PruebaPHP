@@ -1,7 +1,9 @@
 <?php
 
-class ControladorPedidos{
-    public function completarPedido($id){
+class ControladorPedidos
+{
+    public function completarPedido($id)
+    {
         $gestorPedidos = new GestorPedidos();
         $filas = $gestorPedidos->completarPedido($id);
         if ($filas > 0) {
@@ -14,7 +16,8 @@ class ControladorPedidos{
                 </script>";
         }
     }
-    public function cancelarPedido($id){
+    public function cancelarPedido($id)
+    {
         $gestorPedidos = new GestorPedidos();
         $filas = $gestorPedidos->cancelarPedido($id);
         if ($filas > 0) {
@@ -25,6 +28,22 @@ class ControladorPedidos{
             echo "<script>alert('Algo salió mal. Intente nuevamente');
                 window.location='index.php?accion=adminPedidos'
                 </script>";
+        }
+    }
+    public function confirmarPedido()
+    {
+        $gestorPedidos = new GestorPedidos();
+        $productos = $_SESSION['carrito'];
+        $id_usu = $_SESSION['id_usu'];
+
+        $filas = $gestorPedidos->confirmarPedidoCliente($id_usu, $productos);
+        if ($filas > 0) {
+            echo "<script>alert('Pedido Confirmado');
+                window.location='index.php?accion=loadCarrito'</script>";
+            unset($_SESSION['carrito']);
+        } else {
+            echo "<script>alert('Intente Nuevamente');
+                window.location='index.php?accion=loadCarrito'</script>";
         }
     }
 }

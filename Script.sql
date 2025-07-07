@@ -77,7 +77,6 @@ CREATE TABLE `pedidos` (
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `precio` varchar(50) NOT NULL,
-  `imagen` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `marca` varchar(20) NOT NULL,
   `modelos` varchar(30) NOT NULL,
@@ -85,6 +84,12 @@ CREATE TABLE `productos` (
   `especificaciones` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `productos`
+--
+
+INSERT INTO `productos` (`id`, `precio`, `id_categoria`, `marca`, `modelos`, `tipo`, `especificaciones`) VALUES
+(14, '2000000', 1, 'Dell', 'Inspiron 15', 'Computador', 'ram 16');
 -- --------------------------------------------------------
 
 --
@@ -104,7 +109,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
-(1, 'luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin');
+(1, 'luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin'),
+(2, 'Pepito', 'pepito@gmail.com', '$2y$10$p1/3fRtrUKKw5iHwTnDuL.eWLojSXuYlJ01m8XtNd/DM5oaye5vZu', 'cliente');
 
 --
 -- Indexes for dumped tables
@@ -176,7 +182,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

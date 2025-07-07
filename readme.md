@@ -56,11 +56,11 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 ## Tareas realizadas del reto avanzado
 
 - [ ] Adaptar la base de datos -> **Angel**
-- [ ] Cambios en las vistas: Catalogo -> **Luna**
-- [ ] Cambios en las vistas: Panel Administrador -> **Brian**
+- [x] Cambios en las vistas: Catalogo -> **Luna**
+- [ ] Cambios en las vistas: Panel Administrador -> **Angel**
 
 ### Opcional
-- [ ] Carrito de compras mixto -> **Luna**
+- [x] Carrito de compras mixto -> **Luna**
 - [ ] Estadísticas de productos más vendidos por tipo -> **Brian**
 - [ ] Filtro avanzado por tipo, marca o características -> **Brian**
 - [ ] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> **Angel**
@@ -72,15 +72,15 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 
 ### Paginación y búsqueda
 - [ ] Mostrar productos en el catálogo en páginas de 6, 9 o 12 productos -> **Brian**
-- [ ] Añadir buscador por nombre o filtro por categoría -> **Luna**
+- [x] Añadir buscador por nombre o filtro por categoría -> **Luna**
 
 ### Carrito de compras (simulado)
-- [ ] Permitir que el cliente agregue varios productos antes de confirmar el pedido -> **Luna**
-- [ ] Guardar el carrito en la sesión y luego crear el pedido al confirmar -> **Angel**
+- [x] Permitir que el cliente agregue varios productos antes de confirmar el pedido -> **Luna**
+- [x] Guardar el carrito en la sesión y luego crear el pedido al confirmar -> **Luna**
 
 ### Estado del pedido
 - [x] Permitir que el administrador cambie el estado de un pedido (Pendiente, Enviado, Entregado, Cancelado) -> **Luna**
-- [ ] Mostrar al cliente el estado actual de sus pedidos -> **Luna**
+- [x] Mostrar al cliente el estado actual de sus pedidos -> **Luna**
 
 ### Dashboard con gráficas
 - [ ] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar -> **Brian**
