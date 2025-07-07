@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2025 at 10:54 PM
+-- Generation Time: Jul 02, 2025 at 10:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -90,7 +90,6 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `precio`, `id_categoria`, `marca`, `modelos`, `tipo`, `especificaciones`) VALUES
 (14, '2000000', 1, 'Dell', 'Inspiron 15', 'Computador', 'ram 16');
-
 -- --------------------------------------------------------
 
 --
@@ -177,7 +176,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
