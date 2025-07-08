@@ -37,4 +37,7 @@ class Conexion
             return "No hay conexión a la base de datos.";
         }
     }
+    public function getId(){
+        return $this->mySQLI->insert_id;
+    }
 }

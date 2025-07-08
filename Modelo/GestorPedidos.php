@@ -22,30 +22,32 @@ class GestorPedidos
         $conexion->cerrar();
         return $filas;
     }
-    public function confirmarPedidoCliente($id_usu, $productos)
+    public function confirmarPedidoCliente(Pedidos $pedido)
     {
         $conexion = new Conexion();
         $conexion->abrir();
-        $filas = 0;
-
-        foreach ($productos as $prod) {
-            $id_prod = $prod['id_prod'];
-            $cantidad = $prod['cantidad'];
-            $sql = "INSERT INTO pedidos (id_usuario, id_producto, cantidad, fecha, estado) 
-            VALUES ('$id_usu', '$id_prod', '$cantidad', NOW(), 'Pendiente')";
-            $conexion->consultar($sql);
-            if ($conexion->getFilas() <= 0) {
-                echo "Error al insertar producto $id_prod: " . $conexion->getError() . "<br>";
-            }
-            $filas += $conexion->getFilas();
-        }
-
-        echo $id_prod;
-        echo $id_usu;
-        echo $cantidad;
-        echo $filas;
-
+        $id_usuario = $pedido->getIdUsuario();
+        $fecha = $pedido->getFecha();
+        $total = $pedido->getTotal();
+        $estado = $pedido->getEstado();
+        $sql = "INSERT INTO pedidos VALUES(null, '$id_usuario', '$fecha', '$total', '$estado')";
+        $conexion->consultar($sql);
+        $filas = $conexion->getId();
         $conexion->cerrar();
+        return $filas;
+    }
+    public function confirmarDetallePedido(DetallePedido $detallePedido){
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $id_pedido = $detallePedido->getIdPedido();
+        $id_producto = $detallePedido->getIdProducto();
+        $cantidad = $detallePedido->getCantidad();
+        $subtotal = $detallePedido->getSubTotal();
+        $precio = $detallePedido->getPrecio();
+        $subtotal = $precio * $cantidad;
+        $sql = "INSERT INTO detalle_pedido VALUES(null, '$id_pedido', '$id_producto', '$cantidad', '$subtotal', '$precio')";
+        $conexion->consultar($sql);
+        $filas = $conexion->getFilas();
         return $filas;
     }
 }
