@@ -32,18 +32,39 @@ class ControladorPedidos
     }
     public function confirmarPedido()
     {
-        $gestorPedidos = new GestorPedidos();
-        $productos = $_SESSION['carrito'];
-        $id_usu = $_SESSION['id_usu'];
+        if (isset($_SESSION['carrito'])) {
+            $gestorPedidos = new GestorPedidos();
+            $fecha = date('Y-m-d');
+            $id_usu = $_SESSION['id_usu'];
+            $carrito = $_SESSION['carrito'];
 
-        $filas = $gestorPedidos->confirmarPedidoCliente($id_usu, $productos);
-        if ($filas > 0) {
-            echo "<script>alert('Pedido Confirmado');
+            foreach ($carrito as $prod){
+                $subtotal = $prod['cantidad'] * $prod['precio'];
+                $total += $subtotal;
+            }
+
+            $pedido = new Pedidos($id_usu, $fecha, $total,'Pendiente');
+            $id_pedido = $gestorPedidos->confirmarPedidoCliente($pedido);
+            
+            foreach ($carrito as $prod){
+                $detallePedido = new DetallePedido(
+                    $id_pedido,
+                    $prod['id_prod'],
+                    $prod['cantidad'],
+                    null,
+                    $prod['precio']
+                );
+                $filas = $gestorPedidos->confirmarDetallePedido($detallePedido);
+            }
+
+            if ($filas > 0) {
+                echo "<script>alert('Pedido Confirmado');
                 window.location='index.php?accion=loadCarrito'</script>";
-            unset($_SESSION['carrito']);
-        } else {
-            echo "<script>alert('Intente Nuevamente');
+                unset($_SESSION['carrito']);
+            } else {
+                echo "<script>alert('Intente Nuevamente');
                 window.location='index.php?accion=loadCarrito'</script>";
+            }
         }
     }
 }
