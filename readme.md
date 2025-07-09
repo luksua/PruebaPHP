@@ -55,33 +55,33 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 
 ## Tareas realizadas del reto avanzado
 
-- [ ] Adaptar la base de datos -> **Angel**
-- [ ] Cambios en las vistas: Catalogo -> **Luna**
-- [ ] Cambios en las vistas: Panel Administrador -> **Brian**
+- [x] Adaptar la base de datos -> **Angel**
+- [x] Cambios en las vistas: Catalogo -> **Luna**
+- [x] Cambios en las vistas: Panel Administrador -> **Angel**
 
 ### Opcional
-- [ ] Carrito de compras mixto -> 
-- [ ] Estadísticas de productos más vendidos por tipo -> 
-- [ ] Filtro avanzado por tipo, marca o características -> 
-- [ ] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> 
+- [x] Carrito de compras mixto -> **Luna**
+- [ ] Estadísticas de productos más vendidos por tipo -> **Bryan**
+- [x] Filtro avanzado por tipo, marca o características -> **Luna**
+- [x] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> **Angel**
 
 ### Autenticación completa y segura
 - [x] Implementar login y registro para clientes -> **Luna**
 - [x] Guardar contraseñas con hash (`password_hash` / `password_verify`) -> **Luna**
-- [ ] Controlar acceso mediante sesiones para la zona admin ->
+- [x] Controlar acceso mediante sesiones para la zona admin -> **Angel**
 
 ### Paginación y búsqueda
-- [ ] Mostrar productos en el catálogo en páginas de 6, 9 o 12 productos ->
-- [ ] Añadir buscador por nombre o filtro por categoría ->
+- [x] Mostrar productos en el catálogo en páginas de 6, 9 o 12 productos -> **Luna**
+- [x] Añadir buscador por nombre o filtro por categoría -> **Luna**
 
 ### Carrito de compras (simulado)
-- [ ] Permitir que el cliente agregue varios productos antes de confirmar el pedido ->
-- [ ] Guardar el carrito en la sesión y luego crear el pedido al confirmar ->
+- [x] Permitir que el cliente agregue varios productos antes de confirmar el pedido -> **Luna**
+- [x] Guardar el carrito en la sesión y luego crear el pedido al confirmar -> **Luna**
 
 ### Estado del pedido
 - [x] Permitir que el administrador cambie el estado de un pedido (Pendiente, Enviado, Entregado, Cancelado) -> **Luna**
-- [ ] Mostrar al cliente el estado actual de sus pedidos ->
+- [x] Mostrar al cliente el estado actual de sus pedidos -> **Luna**
 
 ### Dashboard con gráficas
-- [ ] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar ->
-- [ ] Ejemplo: número de pedidos por mes, productos más vendidos, etc ->
+- [ ] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar -> **Bryan**
+    - Ejemplo: número de pedidos por mes, productos más vendidos, etc
