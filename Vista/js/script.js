@@ -45,11 +45,17 @@ function loadCarrito() {
     })
 }
 
-function loadCatalogo(id) {
-    $.post("Modelo/loadCatalogo.php", { id: id }, function (respuesta) {
+function loadCatalogo(id, pagina = 1) {
+    $.post("Modelo/loadCatalogo.php", { id: id, pagina: pagina }, function (respuesta) {
         $("#catalogos").html(respuesta);
     })
 }
+
+$(document).on('click', '.pagina-btn', function() {
+    var pagina = $(this).data('pagina');
+    var id = $('.select').val(); // obtiene la categoría seleccionada
+    loadCatalogo(id, pagina);
+});
 
 function loadMenu() {
     $.post("Modelo/nav.php", {}, function (respuesta) {
