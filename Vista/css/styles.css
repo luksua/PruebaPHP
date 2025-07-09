@@ -127,4 +127,18 @@ footer {
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
+} 
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
 }

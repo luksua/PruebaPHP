@@ -13,6 +13,7 @@ require_once "Modelo/GestorAdmin.php";
 require_once "Modelo/GestorCategorias.php";
 require_once "Modelo/GestorProductos.php";
 require_once "Modelo/GestorPedidos.php";
+require_once "Modelo/Imagenes.php";
 
 $controlador = new Controlador();
 $controladorCategoria = new ControladorCategorias();
@@ -37,66 +38,92 @@ if (isset($_GET["accion"])) {
     } elseif ($_GET["accion"] == "adminPedidos") {
         $controlador->verPagina("Vista/html/adminPedidos.html");
     } elseif ($_GET["accion"] == "adminCategorias") {
-        $controlador->verPagina("Vista/html/adminCategorias.html");
+        $controlador->verPagina("Vista/html/adminCategorias.html");}
 
     // CRUD CATEGORIA
-    } elseif ($_GET["accion"] == "agregarCategoria") {
-        $controladorCategoria->agregarCategoria($_POST["nombre"]);
-    } elseif ($_GET["accion"] == "eliminarCategoria") {
-        $controladorCategoria->eliminarCategoria($_GET["id"]);
-    } elseif ($_GET["accion"] == "editarCategoria") {
-        $controladorCategoria->editarCategoria($_POST["id"], $_POST["nombre"]);
-    
+    elseif($_GET['accion']=="IngresoCategos"){ 
+        $controladorCategoria->CategoriaIngreso( 
+            $_GET['NombreCat'],
+            $_GET['BornFech']
+        );
+    } 
+    elseif($_GET['accion']=="updateCategos"){ 
+        $controladorCategoria->ActualizarCategos( 
+            $_GET['NombreCat2'],
+            $_GET['BornFech2'], 
+            $_GET['ClaveCat2']
+        );
+    } 
+    elseif($_GET['accion']=="delCategoria"){ 
+         $controladorCategoria->DeleteCategorias( 
+            $_GET['clave3']
+         );
+    }
+    //
+
     // CRUD PEDIDOS
-    } elseif ($_GET["accion"] == "completarPedido"){
+     elseif ($_GET["accion"] == "completarPedido"){
         $controladorPedidos->completarPedido($_GET["id"]);
     } elseif ($_GET["accion"] == "cancelarPedido"){
-        $controladorPedidos->cancelarPedido($_GET["id"]);
+        $controladorPedidos->cancelarPedido($_GET["id"]);}
     
     // CRUD PRODUCTO
-    } elseif ($_GET["accion"] == "agregarProducto") {
-        $ruta_indexphp = "uploads";
-        $extensiones = array(0 => 'image/jpg', 1 => 'image/jpeg', 2 => 'image/png');
-        $max_tamanyo = 1024 * 1024 * 8;
-        $imagen = $_FILES['imagen']['name'];
-        $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-        $ruta_nuevo_destino = $ruta_indexphp . '/' . $_FILES['imagen']['name'];
-        if (in_array($_FILES['imagen']['type'], $extensiones)) {
-            echo 'Es una imagen';
-            if ($_FILES['imagen']['size'] < $max_tamanyo) {
-                echo 'Pesa menos de 1 MB';
-                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                    echo 'Fichero guardado con éxito';
+     elseif($_GET["accion"] == "ingProds"){ 
+        $controladorProducto->productoIngreso( 
+            $_GET['ProdPrecio'],  
+            $_GET['ProdCategoria'],
+            $_GET['ProdMarca'],
+            $_GET['ProdModelo'],
+            $_GET['ProdTipo'],
+            $_GET['ProdEpec']
+        ); 
+     }
+     elseif($_GET["accion"] == "actuprodocs"){
+
+        $controladorProducto->productoActualizacion( 
+            $_GET['ProdPrecio2'],  
+            $_GET['ProdCategoria2'],
+            $_GET['ProdMarca2'],
+            $_GET['ProdModelo2'],
+            $_GET['ProdTipo2'],
+            $_GET['ProdEpec2'],
+            $_GET['ProdClave']
+        );
+     } 
+     elseif($_GET['accion']=="deleteProducto"){ 
+         
+        $controladorProducto->deleteActualizacion(
+            $_GET['Omegon']
+        );
+     } 
+     elseif($_GET['accion']=="imgIngProd"){ 
+       
+
+        $BoxFort = "uploads";
+        $formatos_admitido = array('image/jpg', 'image/jpeg', 'image/webp', 'image/png', 'image/avif'); 
+        $Tamaño_Maximo = 1024 * 1024 * 8; 
+        $idProd = $_POST['IdProdImg']; 
+
+        foreach($_FILES['ListadoFotos']['name'] as $Posicion => $NombreArchivo){
+            $origenFoto = $_FILES['ListadoFotos']['tmp_name'][$Posicion];
+            $tipoArchivo = $_FILES['ListadoFotos']['type'][$Posicion];
+            $tamanoArchivo = $_FILES['ListadoFotos']['size'][$Posicion];
+            $nombreUnico = time() . '_' . $NombreArchivo;
+            $imgDestinoFinal = $BoxFort . '/' . $nombreUnico;
+             
+
+            if($tamanoArchivo < $Tamaño_Maximo && in_array($tipoArchivo, $formatos_admitido)){
+                if(move_uploaded_file($origenFoto, $imgDestinoFinal)){ 
+                    $controladorProducto->ImagenesIngresoProd($idProd, $nombreUnico);
                 }
             }
+        } 
         }
-
-        $controladorProducto->agregarProducto($_POST["nombre"], $_POST["precio"], $_POST["talla"], $_POST["descripcion"], $_POST["categoria"], $imagen);
-    } elseif ($_GET["accion"] == "eliminarProducto") {
-        $controladorProducto->eliminarProducto($_GET["id"]);
-    } elseif ($_GET["accion"] == "editarProducto") {
-        $controladorProducto->editarProducto($_GET["id"]);
-    } elseif ($_GET["accion"] == "editarProducto2") {
-        $ruta_indexphp = "uploads";
-        $extensiones = array(0 => 'image/jpg', 1 => 'image/jpeg', 2 => 'image/png');
-        $max_tamanyo = 1024 * 1024 * 8;
-        $imagen = $_FILES['imagen']['name'];
-        $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-        $ruta_nuevo_destino = $ruta_indexphp . '/' . $_FILES['imagen']['name'];
-        if (in_array($_FILES['imagen']['type'], $extensiones)) {
-            echo 'Es una imagen';
-            if ($_FILES['imagen']['size'] < $max_tamanyo) {
-                echo 'Pesa menos de 1 MB';
-                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                    echo 'Fichero guardado con éxito';
-                }
-            }
-        }
-
-        $controladorProducto->editarProducto2($_POST["id"], $_POST["nombre"], $_POST["precio"], $_POST["talla"], $_POST["descripcion"], $_POST["categoria"], $imagen);
+    
+    // CRUD PRODUCTO 
 
     // SOLICITAR COMPRA
-    } elseif ($_GET["accion"] == "solicitarCompra") {
+     elseif ($_GET["accion"] == "solicitarCompra") {
         $controladorProducto->solicitarCompra($_GET["id"]);
     } elseif ($_GET["accion"] == "agregarCompra") {
         $controladorProducto->agregarCompra($_POST["id_producto"], $_POST["id_usuario"], $_POST["cantidad"]);
@@ -110,7 +137,8 @@ if (isset($_GET["accion"])) {
     }
     // elseif ($_GET["accion"] == "mostrarProductos"){
     //     $controladorProducto->mostrarProductos($_GET["id"]);
-    // }
-} else {
+    // }  
+}
+else {
     $controlador->verPagina("Vista/html/catalogo.html");
 }
