@@ -9,7 +9,10 @@ require_once "Controlador/ControladorProductos.php";
 require_once "Controlador/ControladorPedidos.php";
 require_once "Modelo/Categorias.php";
 require_once "Modelo/Productos.php";
+require_once "Modelo/Categorias.php";
 require_once "Modelo/GestorAdmin.php";
+require_once "Modelo/Pedidos.php";
+require_once "Modelo/DetallePedido.php";
 require_once "Modelo/GestorCategorias.php";
 require_once "Modelo/GestorProductos.php";
 require_once "Modelo/GestorPedidos.php";
@@ -17,13 +20,15 @@ require_once "Modelo/GestorPedidos.php";
 $controlador = new Controlador();
 $controladorCategoria = new ControladorCategorias();
 $controladorProducto = new ControladorProductos();
-$controladorPedidos = new ControladorPedidos();
+$controladorPedido = new ControladorPedidos();
 
 if (isset($_GET["accion"])) {
     if ($_GET["accion"] == "admin") {
         $controlador->verPagina("Vista/html/login.html");
     } elseif ($_GET["accion"] == "catalogo") {
         $controlador->verPagina("Vista/html/catalogo.html");
+    } elseif ($_GET["accion"] == "registro") {
+        $controlador->verPagina("Vista/html/registro.html");
     } elseif ($_GET["accion"] == "login") {
         $controlador->login($_POST["email"], $_POST["password"]);
     } elseif ($_GET["accion"] == "logout") {
@@ -49,7 +54,7 @@ if (isset($_GET["accion"])) {
     
     // CRUD PEDIDOS
     } elseif ($_GET["accion"] == "completarPedido"){
-        $controladorPedidos->completarPedido($_GET["id"]);
+        $controladorPedido->completarPedido($_GET["id"]);
     } elseif ($_GET["accion"] == "cancelarPedido"){
         $controladorPedidos->cancelarPedido($_GET["id"]);
     } elseif ($_GET["accion"] == "estadoEnviado"){
@@ -100,15 +105,20 @@ if (isset($_GET["accion"])) {
     // SOLICITAR COMPRA
     } elseif ($_GET["accion"] == "solicitarCompra") {
         $controladorProducto->solicitarCompra($_GET["id"]);
-    } elseif ($_GET["accion"] == "agregarCompra") {
-        $controladorProducto->agregarCompra($_POST["id_producto"], $_POST["id_usuario"], $_POST["cantidad"]);
-
+    
     // VISTA CLIENTE
     } elseif ($_GET["accion"] == "panelCliente") {
         $controlador->verPagina("Vista/html/cliente.html");
     } elseif ($_GET["accion"] == "registro") {
         $controlador->verPagina("Vista/html/registro.html");
-
+    } elseif ($_GET["accion"] == "loadCarrito") {
+        $controlador->verPagina("Vista/html/carrito.html");
+    
+    // CARRITO
+    } elseif ($_GET["accion"] == "añadirProductoCarrito") {
+        $controladorProducto->añadirProductoCarrito($_POST["id_producto"], $_POST["id_usuario"], $_POST["cantidad"]);
+    } elseif ($_GET["accion"] == "confirmarPedido") {
+        $controladorPedido->confirmarPedido();
     }
     // elseif ($_GET["accion"] == "mostrarProductos"){
     //     $controladorProducto->mostrarProductos($_GET["id"]);

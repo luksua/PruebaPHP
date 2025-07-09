@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2025 at 12:55 AM
+-- Generation Time: Jul 02, 2025 at 10:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tienda_tenis`
+-- Database: `tienda_electronicos`
 --
 
 -- --------------------------------------------------------
@@ -37,8 +37,21 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`) VALUES
-(1, 'Infantil'),
-(2, 'Deportivos');
+(1, 'Portátiles'),
+(2, 'Computadores de escritorio'),
+(3, 'Repuestos');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `imagenes`
+--
+
+CREATE TABLE `imagenes` (
+  `id_imag` int(11) NOT NULL,
+  `id_prod` int(11) NOT NULL,
+  `ruta_img` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,13 +68,6 @@ CREATE TABLE `pedidos` (
   `estado` enum('activo','inactivo','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `id_usuario`, `id_producto`, `cantidad`, `fecha`, `estado`) VALUES
-(1, 1, 3, 4, '2025-06-27', 'activo');
-
 -- --------------------------------------------------------
 
 --
@@ -70,23 +76,20 @@ INSERT INTO `pedidos` (`id`, `id_usuario`, `id_producto`, `cantidad`, `fecha`, `
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `talla` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
   `precio` varchar(50) NOT NULL,
-  `imagen` varchar(50) NOT NULL,
-  `id_categoria` int(11) NOT NULL
+  `id_categoria` int(11) NOT NULL,
+  `marca` varchar(20) NOT NULL,
+  `modelos` varchar(30) NOT NULL,
+  `tipo` enum('Repuesto','Computador') NOT NULL,
+  `especificaciones` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `talla`, `descripcion`, `precio`, `imagen`, `id_categoria`) VALUES
-(1, 'Nike', 33, 'Nike teni', '200000', 'nike.png', 2),
-(3, 'Adidas', 36, 'Adidas teni', '500000', 'adidas.jpg', 1),
-(9, 'Nike niño', 29, 'Nike teni', '300000', 'nike.png', 1);
-
+INSERT INTO `productos` (`id`, `precio`, `id_categoria`, `marca`, `modelos`, `tipo`, `especificaciones`) VALUES
+(14, '2000000', 1, 'Dell', 'Inspiron 15', 'Computador', 'ram 16');
 -- --------------------------------------------------------
 
 --
@@ -97,7 +100,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `contraseña` varchar(255) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
   `rol` enum('admin','cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,8 +108,9 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contraseña`, `rol`) VALUES
-(1, 'luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin');
+INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `rol`) VALUES
+(1, 'luna', 'admin@admintenis.com', '$2y$10$QQPqjkA8HtlW.ONHfQlZcORDql9I4stqzUbxZxiBBA2vB2EFlldoS', 'admin'),
+(2, 'Pepito', 'pepito@gmail.com', '$2y$10$p1/3fRtrUKKw5iHwTnDuL.eWLojSXuYlJ01m8XtNd/DM5oaye5vZu', 'cliente');
 
 --
 -- Indexes for dumped tables
@@ -117,6 +121,13 @@ INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contraseña`, `rol`) VALUES
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD PRIMARY KEY (`id_imag`),
+  ADD KEY `id_prod` (`id_prod`);
 
 --
 -- Indexes for table `pedidos`
@@ -131,7 +142,7 @@ ALTER TABLE `pedidos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_categoria` (`id_categoria`) USING BTREE;
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indexes for table `usuarios`
@@ -150,6 +161,12 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `imagenes`
+--
+ALTER TABLE `imagenes`
+  MODIFY `id_imag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
@@ -159,17 +176,23 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `imagenes`
+--
+ALTER TABLE `imagenes`
+  ADD CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`id_prod`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pedidos`

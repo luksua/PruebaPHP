@@ -31,7 +31,7 @@ class GestorProductos
     {
         $conexion = new Conexion();
         $conexion->abrir();
-        $sql = "SELECT *, p.id AS id_producto, c.nombre AS nombre_categoria, p.nombre AS nombre_producto, p.id_categoria AS id_cat, c.id AS cat_id
+        $sql = "SELECT *, p.id AS id_producto, c.nombre AS nombre_categoria, p.id_categoria AS id_cat, c.id AS cat_id
                 FROM productos AS p
                 JOIN categorias AS c 
                 ON p.id_categoria = c.id
@@ -51,7 +51,7 @@ class GestorProductos
         $conexion->cerrar();
         return $filas;
     }
-    public function agregarCompra($id_prod, $id_usu, $cantidad)
+    public function añadirProductoCarrito($id_prod, $id_usu, $cantidad)
     {
         $conexion = new Conexion();
         $conexion->abrir();

@@ -6,6 +6,7 @@ $(document).ready(function () {
     loadCatalogo(0);
     loadMenu();
     loadPedidosCliente();
+    loadCarrito();
 })
 
 function loadCategorias() {
@@ -38,11 +39,23 @@ function loadPedidosCliente() {
     })
 }
 
-function loadCatalogo(id) {
-    $.post("Modelo/loadCatalogo.php", { id: id }, function (respuesta) {
+function loadCarrito() {
+    $.post("Modelo/loadCarrito.php", {}, function (respuesta) {
+        $("#carrito").html(respuesta);
+    })
+}
+
+function loadCatalogo(id, pagina = 1) {
+    $.post("Modelo/loadCatalogo.php", { id: id, pagina: pagina }, function (respuesta) {
         $("#catalogos").html(respuesta);
     })
 }
+
+$(document).on('click', '.pagina-btn', function() {
+    var pagina = $(this).data('pagina');
+    var id = $('.select').val(); // obtiene la categoría seleccionada
+    loadCatalogo(id, pagina);
+});
 
 function loadMenu() {
     $.post("Modelo/nav.php", {}, function (respuesta) {
@@ -81,6 +94,10 @@ function mostrarProductos(id) {
     // window.location.href = "index.php?accion=mostrarProductos&id=" + id;
 }
 
+function confirmarPedido() {
+    window.location.href = "index.php?accion=confirmarPedido";
+}
+
 function solicitar(id) {
     var id = id;
     window.location.href = "index.php?accion=solicitarCompra&id=" + id;
@@ -99,6 +116,20 @@ function cancelarPedido(id) {
         window.location.href = "index.php?accion=cancelarPedido&id=" + id;
     }
 }
+
+// CARRUSEL
+$(document).on('click', '.carrusel-flecha', function() {
+    var $carrusel = $(this).closest('.carrusel');
+    var imagenes = JSON.parse($carrusel.attr('data-imagenes'));
+    var $img = $carrusel.find('.carrusel-img');
+    var actual = imagenes.indexOf($img.attr('src'));
+    if ($(this).hasClass('izq')) {
+        actual = (actual - 1 + imagenes.length) % imagenes.length;
+    } else {
+        actual = (actual + 1) % imagenes.length;
+    }
+    $img.attr('src', imagenes[actual]);
+});
 
 function estadoEnviado(id) {
     var id = id;
