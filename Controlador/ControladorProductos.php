@@ -2,68 +2,43 @@
 
 class ControladorProductos
 {
-    public function agregarProducto($nombre, $precio, $talla, $descripcion, $categoria, $imagen)
-    {
-        $producto = new Productos($nombre, $talla, $descripcion, $precio, $imagen, $categoria);
-        $gestorProducto = new GestorProductos();
-        $filas = $gestorProducto->agregarProducto($producto);
-        if ($filas > 0) {
-            echo "<script>alert('Producto agregado');
-                window.location='index.php?accion=panelAdmin'
-                </script>";
-        } else {
-            echo "<script>alert('Algo salió mal. Intente nuevamente');
-                window.location='index.php?accion=panelAdmin'
-                </script>";
-        }
-    }
-    public function eliminarProducto($id)
-    {
-        $gestorProducto = new GestorProductos();
-        $filas = $gestorProducto->eliminarProducto($id);
-        if ($filas > 0) {
-            echo "<script>alert('Producto eliminado');
-                window.location='index.php?accion=panelAdmin'
-                </script>";
-        } else {
-            echo "<script>alert('Algo salió mal. Intente nuevamente');
-                window.location='index.php?accion=panelAdmin'
-                </script>";
-        }
-    }
-    public function editarProducto($id)
-    {
+    
+    public function productoIngreso($ProdPeci, $ProdCatgo, $ProdMar, $ProdMod, $ProdTipo, $ProdEspels){ 
 
-        $gestorProducto = new GestorProductos();
-        $gestorCategorias = new GestorCategorias();
-        $result = $gestorProducto->consultaEditar($id);
-        $result2 = $gestorCategorias->loadCategorias();
-        require_once "Vista/html/adminEditar.php";
+        $ModIngreso= new Productos($ProdPeci, $ProdCatgo, $ProdMar, $ProdMod, $ProdTipo, $ProdEspels);  
+        $Crud_Productos1= new GestorProductos; 
+        $Crud_Productos1->ProductosIngreso($ModIngreso);
     }
-    public function editarProducto2($id, $nombre, $precio, $talla, $descripcion, $categoria, $imagen)
-    {
-        if (empty($imagen)) {
-            echo "<script>
-            alert('Ingrese todos los datos');
-            window.location='index.php?accion=editarProducto&id=" . $id . "';
-        </script>";
-        } else {
-            $gestorProducto = new GestorProductos();
-            $filas = $gestorProducto->editarProducto2($id, $nombre, $precio, $talla, $descripcion, $categoria, $imagen);
-            if ($filas > 0) {
-                echo "<script>alert('Producto editado');
-                window.location='index.php?accion=panelAdmin'</script>";
-            } else {
-                echo "<script>alert('El producto no se editó, ingrese nuevos datos');
-                window.location='index.php?accion=editarProducto&id=$id'</script>";
-            }
-        }
+
+
+    public function productoActualizacion($ProdPeci2, $ProdCatgo2, $ProdMar2, $ProdMod2, $ProdTipo2, $ProdEspels2, $claveProd){ 
+
+        $ModActualizar= new Productos($ProdPeci2, $ProdCatgo2, $ProdMar2, $ProdMod2, $ProdTipo2, $ProdEspels2, $claveProd); 
+        $Crud_Productos2= new GestorProductos; 
+        $Crud_Productos2->actualizarProductos($ModActualizar);
+    } 
+
+    public function deleteActualizacion($claveProd2){ 
+
+        $ModBorrar= new Productos(null, null, null, null, null, null, $claveProd2);
+        $Crud_Productos3= new GestorProductos; 
+        $Crud_Productos3->CambioEstado($ModBorrar); 
+
+        require_once 'Vista/html/adminProductos.html';
     }
-    public function mostrarProductos($id)
-    {
-        $id = $id;
-        // require_once "Modelo/loadCatalogo.php";
-    }
+
+    public function ImagenesIngresoProd($ProdAsociado ,$ListadoImg){ 
+
+        $Modimagenes= new Imagenes($ProdAsociado ,$ListadoImg); 
+        $Crud_ProductosImg= new GestorProductos; 
+        $Crud_ProductosImg->IngresarImagen($Modimagenes); 
+    } 
+
+
+
+
+    
+    //importante
     public function solicitarCompra($id)
     {
         if (!isset($_SESSION["email"])) {
@@ -78,7 +53,8 @@ class ControladorProductos
             $result2 = $gestorAdmin->datos($email);
             require_once "Vista/html/solicitarCompra.php";
         }
-    }
+    } 
+    //importante
     public function añadirProductoCarrito($id_prod, $id_usu, $cantidad)
     {
         if (empty($cantidad)) {

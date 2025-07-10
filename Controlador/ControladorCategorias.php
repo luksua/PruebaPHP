@@ -2,53 +2,26 @@
 
 class ControladorCategorias
 {
-    public function agregarCategoria($nombre)
-    {
-        $categoria = new Categorias($nombre);
-        $gestorCategoria = new GestorCategorias();
-        $filas = $gestorCategoria->agregarCategoria($categoria);
-        if ($filas > 0) {
-            echo "<script>alert('Categoria agregada');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        } else {
-            echo "<script>alert('Algo salió mal. Intente nuevamente');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        }
-    }
-    public function loadCategorias()
-    {
-        $gestorCategoria = new GestorCategorias();
-        $result = $gestorCategoria->loadCategorias();
-        require_once "Vista/html/admin.php";
-    }
-    public function eliminarCategoria($id)
-    {
-        $gestorCategoria = new GestorCategorias();
-        $filas = $gestorCategoria->eliminarCategoria($id);
-        if ($filas > 0) {
-            echo "<script>alert('Categoria eliminada');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        } else {
-            echo "<script>alert('No se pudo eliminar la categoria');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        }
-    }
-    public function editarCategoria($id, $nombre)
-    {
-        $gestorCategoria = new GestorCategorias();
-        $filas = $gestorCategoria->editarCategoria($id, $nombre);
-        if ($filas > 0) {
-            echo "<script>alert('Categoria editada');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        } else {
-            echo "<script>alert('No se pudo editar la categoria');
-                window.location='index.php?accion=adminCategorias'
-                </script>";
-        }
+    public function CategoriaIngreso($Nomcatego, $FetchCatego){ 
+         
+        $Crud_Catego= new Categorias($Nomcatego, $FetchCatego, null, null);
+        $GestorCat= new GestorCategorias;  
+        $GestorCat->categoriaIngresar($Crud_Catego);
+    } 
+
+    public function ActualizarCategos($Nomcatego, $FetchCatego, $ClaveCatego){ 
+
+        $Crud_Catego2= new Categorias($Nomcatego, $FetchCatego, null, $ClaveCatego); 
+        $GestorCat2= new GestorCategorias; 
+        $GestorCat2->categoriaUpdate($Crud_Catego2);
+    } 
+
+    public function DeleteCategorias($CifradoCatego){ 
+
+        $Crud_Catego3= new Categorias(null, null, null, $CifradoCatego); 
+        $GestorCat3= new GestorCategorias; 
+        $GestorCat3->CategoriaDelete($Crud_Catego3); 
+
+        require_once 'Vista/html/adminCategorias.html';
     }
 }

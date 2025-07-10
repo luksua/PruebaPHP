@@ -94,5 +94,4 @@ if (count($productos) > 0) {
     echo '`);</script>';
 } else {
     echo "<p>No hay productos para mostrar en esta categoría</p>";
-    echo '<script>$("#paginacion").html("");</script>';
 }
