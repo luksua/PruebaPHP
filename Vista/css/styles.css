@@ -127,6 +127,20 @@ footer {
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
+} 
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
 }
 
 /* CARRUSEL */
@@ -165,4 +179,27 @@ footer {
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     display: block;
     margin: 0 auto;
+}
+
+.paginacion {
+    margin: 20px 0;
+    text-align: center;
+}
+.pagina-btn {
+    background: #252525;
+    color: #fff;
+    border: none;
+    margin: 0 3px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.pagina-btn:hover:not([disabled]) {
+    background: #000000;
+}
+.pagina-btn[disabled] {
+    background: #6c757d;
+    cursor: not-allowed;
 }
