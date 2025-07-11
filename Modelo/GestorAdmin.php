@@ -9,7 +9,7 @@ class GestorAdmin{
         $result = $conexion->getResult();
         $conexion->cerrar();
         if ($result && $row = $result->fetch_assoc()) {
-            if (password_verify($password, $row["contraseña"])){
+            if (password_verify($password, $row["contrasena"])){
                 return 1;
             }
         } else {

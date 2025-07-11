@@ -7,9 +7,13 @@ class Conexion
     private $result;
     private $filas;
     private $conn;
+    public function __construct()
+    {
+        $this->abrir();
+    }
     public function abrir()
     {
-        $this->mySQLI = new mysqli("localhost", "root", "", "tienda_tenis");
+        $this->mySQLI = new mysqli("localhost", "root", "", "tienda_electronicos");
     }
     public function cerrar()
     {
@@ -31,6 +35,14 @@ class Conexion
     }
     public function getError()
     {
-        return $this->conn->error;
+        if ($this->mySQLI) {
+            return $this->mySQLI->error;
+        } else {
+            return "No hay conexión a la base de datos.";
+        }
+    }
+    public function getId()
+    {
+        return $this->mySQLI->insert_id;
     }
 }

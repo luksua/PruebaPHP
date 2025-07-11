@@ -1,36 +1,55 @@
 <?php
 
-class Productos{
-    private $name;
-    private $size;
-    private $description;
-    private $price;
-    private $photo;
-    private $category;
-    public function __construct($name, $size, $description, $price, $photo, $category){
-        $this->name = $name;
-        $this->size = $size;
-        $this->description = $description;
-        $this->price = $price;
-        $this->photo = $photo;
-        $this->category = $category;
-    }
-    public function getName(){
-        return $this->name;
-    }
-    public function getSize(){
-        return $this->size;
-    }
-    public function getDescription(){
-        return $this->description;
-    }
-    public function getPrice(){
-        return $this->price;
-    }
-    public function getPhoto(){
-        return $this->photo;
-    }
-    public function getCategory(){
-        return $this->category;
-    }
-}
+    class Productos{
+         
+        private $PrecioProd; 
+        private $CategoProd;
+        private $MarcaProd;
+        private $ModeloProd;
+        private $TipoProd;
+        private $EspciProd;  
+        private $claveprod;
+
+        public function __construct($PrecioProd=null, $CategoProd=null, $MarcaProd=null, $ModeloProd=null, $TipoProd=null, $EspciProd=null, $claveprod=null){
+            
+            $this->PrecioProd=$PrecioProd;  
+            $this->CategoProd=$CategoProd;
+            $this->MarcaProd=$MarcaProd;
+            $this->ModeloProd=$ModeloProd;
+            $this->TipoProd=$TipoProd;
+            $this->EspciProd=$EspciProd; 
+            $this->claveprod=$claveprod; 
+            
+        } 
+
+        public function getPrecio(){ 
+            return $this->PrecioProd;
+        } 
+
+        public function getCatego(){ 
+            return $this->CategoProd;
+        } 
+
+        public function getMarca(){ 
+            return $this->MarcaProd;
+        } 
+
+        public function getModelo(){ 
+            return $this->ModeloProd;
+        } 
+
+        public function getTipo(){ 
+            return $this->TipoProd;
+        } 
+
+        public function getEspeci(){ 
+            return $this->EspciProd;
+        } 
+
+        public function getClave(){ 
+            return $this->claveprod;
+        }
+
+    } 
+
+?>
