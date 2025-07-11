@@ -32,12 +32,7 @@ class ControladorProductos
         $Modimagenes= new Imagenes($ProdAsociado ,$ListadoImg); 
         $Crud_ProductosImg= new GestorProductos; 
         $Crud_ProductosImg->IngresarImagen($Modimagenes); 
-    } 
-
-
-
-
-    
+    }     
     //importante
     public function solicitarCompra($id)
     {
@@ -54,6 +49,23 @@ class ControladorProductos
             require_once "Vista/html/solicitarCompra.php";
         }
     } 
+
+    public function mostrarEstadisticas()
+    {
+            $gestorProducto = new GestorProductos();
+            $result = $gestorProducto->productosMasVendidos();
+
+            $labels = [];
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $labels[] = $row['marca'];
+                $data[] = $row['total_vendidos'];
+            }
+
+            // Ahora las variables estarán disponibles en la vista
+            include "Vista/html/admin.php";
+        }
+            
     //importante
     public function añadirProductoCarrito($id_prod, $id_usu, $cantidad)
     {
@@ -113,4 +125,49 @@ class ControladorProductos
             // }
         }
     }
+
+    public function mostrarEstadisticasEstadoPedidos()
+    {
+        $gestorProducto = new GestorProductos();
+        $result = $gestorProducto->estadisticasEstadoPedidos();
+
+        $labels = [];
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $labels[] = $row['estado'];
+            $data[] = $row['cantidad'];
+        }
+
+        include "Vista/html/admin.php";
+    }
+
+    public function getProductosMasVendidos()
+    {
+        $gestorProducto = new GestorProductos();
+        $result = $gestorProducto->productosMasVendidos();
+
+        $labelsVendidos = [];
+        $dataVendidos = [];
+        while ($row = $result->fetch_assoc()) {
+            $labelsVendidos[] = $row['marca'];
+            $dataVendidos[] = $row['total_vendidos'];
+        }
+        return [$labelsVendidos, $dataVendidos];
+    }
+
+    public function getEstadisticasEstadoPedidos()
+    {
+        $gestorProducto = new GestorProductos();
+        $result = $gestorProducto->estadisticasEstadoPedidos();
+
+        $labelsEstado = [];
+        $dataEstado = [];
+        while ($row = $result->fetch_assoc()) {
+            $labelsEstado[] = $row['estado'];
+            $dataEstado[] = $row['cantidad'];
+        }
+        return [$labelsEstado, $dataEstado];
+    }
 }
+
+?>

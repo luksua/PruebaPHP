@@ -44,6 +44,10 @@ if (isset($_GET["accion"])) {
         $controlador->verPagina("Vista/html/adminPedidos.html");
     } elseif ($_GET["accion"] == "adminCategorias") {
         $controlador->verPagina("Vista/html/adminCategorias.html");
+    } elseif ($_GET["accion"] == "adminEstadisticas") {
+        $controladorProducto->mostrarEstadisticas();
+    } elseif ($_GET["accion"] == "panelEstadisticas") {
+        $controlador->verPagina("Vista/html/admin.php");
     }
 
     // CRUD CATEGORIA

@@ -124,4 +124,32 @@ class GestorProductos
         $conexion->cerrar();
         return $filas;
     }
+
+    public function productosMasVendidos()
+    {
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $sql = "SELECT p.marca, SUM(dp.cantidad) AS total_vendidos
+                FROM detalle_pedido dp
+                JOIN productos p ON dp.id_producto = p.id
+                GROUP BY p.marca
+                ORDER BY total_vendidos DESC
+                LIMIT 5";
+        $conexion->consultar($sql);
+        $result = $conexion->getResult();
+        $conexion->cerrar();
+        return $result;
+    }
+    public function estadisticasEstadoPedidos()
+    {
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $sql = "SELECT estado, COUNT(*) AS cantidad
+                FROM pedidos
+                GROUP BY estado";
+        $conexion->consultar($sql);
+        $result = $conexion->getResult();
+        $conexion->cerrar();
+        return $result;
+    }
 }

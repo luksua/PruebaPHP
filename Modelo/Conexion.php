@@ -7,6 +7,10 @@ class Conexion
     private $result;
     private $filas;
     private $conn;
+    public function __construct()
+    {
+        $this->abrir();
+    }
     public function abrir()
     {
         $this->mySQLI = new mysqli("localhost", "root", "", "tienda_electronicos");
