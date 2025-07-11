@@ -61,7 +61,7 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 
 ### Opcional
 - [x] Carrito de compras mixto -> **Luna**
-- [ ] Estadísticas de productos más vendidos por tipo -> **Bryan**
+- [x] Estadísticas de productos más vendidos por tipo -> **Bryan**
 - [x] Filtro avanzado por tipo, marca o características -> **Luna**
 - [x] Backend que gestione múltiples imágenes por producto (subida, eliminación y visualización) -> **Angel**
 
@@ -83,5 +83,5 @@ Este proyecto es una aplicación web desarrollada en PHP que simula una tienda d
 - [x] Mostrar al cliente el estado actual de sus pedidos -> **Luna**
 
 ### Dashboard con gráficas
-- [ ] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar -> **Bryan**
+- [x] Mostrar en el panel admin estadísticas básicas usando Chart.js o similar -> **Bryan**
     - Ejemplo: número de pedidos por mes, productos más vendidos, etc
