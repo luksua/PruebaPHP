@@ -56,7 +56,6 @@ if (isset($_GET["accion"])) {
             $_GET['NombreCat'],
             $_GET['BornFech']
         );
-    
     } elseif ($_GET['accion'] == "updateCategos") {
         $controladorCategoria->ActualizarCategos(
             $_GET['NombreCat2'],

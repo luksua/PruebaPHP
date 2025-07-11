@@ -23,9 +23,9 @@ list($labelsEstado, $dataEstado) = $controlador->getEstadisticasEstadoPedidos();
     <header>
         <h1>Tienda Electronica</h1>
         <nav>
-            <a href="#">Inicio</a>
-            <a href="index.php?accion=catalogo">Catálogo</a>
-            <a href="#admin">Zona Admin</a>
+            <div id="menu">
+
+            </div>
         </nav>
     </header>
 
